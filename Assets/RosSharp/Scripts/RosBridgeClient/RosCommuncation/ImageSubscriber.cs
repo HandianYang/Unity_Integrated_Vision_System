@@ -13,7 +13,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System;
 using UnityEngine;
+using static RosSharp.Urdf.Link.Visual.Material;
 
 namespace RosSharp.RosBridgeClient
 {
@@ -23,14 +25,16 @@ namespace RosSharp.RosBridgeClient
         public MeshRenderer meshRenderer;
 
         private Texture2D texture2D;
+        private Material material;
         private byte[] imageData;
+
         private bool isMessageReceived;
 
         protected override void Start()
         {
 			base.Start();
-            texture2D = new Texture2D(1, 1);
-            meshRenderer.material = new Material(Shader.Find("Standard"));
+            texture2D = new Texture2D(2, 2, TextureFormat.RGB24, false);
+            material = new Material(meshRenderer.sharedMaterial);
         }
         private void Update()
         {
@@ -47,8 +51,9 @@ namespace RosSharp.RosBridgeClient
         private void ProcessMessage()
         {
             texture2D.LoadImage(imageData);
-            texture2D.Apply();
-            meshRenderer.material.SetTexture("_MainTex", texture2D);
+            material.mainTexture = texture2D;
+            meshRenderer.material = material;
+
             isMessageReceived = false;
         }
 
