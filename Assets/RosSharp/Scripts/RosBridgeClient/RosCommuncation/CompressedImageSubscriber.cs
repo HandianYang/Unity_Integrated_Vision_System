@@ -20,7 +20,7 @@ using static RosSharp.Urdf.Link.Visual.Material;
 namespace RosSharp.RosBridgeClient
 {
     [RequireComponent(typeof(RosConnector))]
-    public class ImageSubscriber : UnitySubscriber<MessageTypes.Sensor.Image>
+    public class CompressedImageSubscriber : UnitySubscriber<MessageTypes.Sensor.CompressedImage>
     {
         public MeshRenderer meshRenderer;
 
@@ -42,9 +42,9 @@ namespace RosSharp.RosBridgeClient
                 ProcessMessage();
         }
 
-        protected override void ReceiveMessage(MessageTypes.Sensor.Image Image)
+        protected override void ReceiveMessage(MessageTypes.Sensor.CompressedImage compressedImage)
         {
-            imageData = Image.data;
+            imageData = compressedImage.data;
             isMessageReceived = true;
         }
 

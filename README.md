@@ -4,7 +4,7 @@ Integration of Augmented Reality (AR) and the cameras' vision based on an Unity3
 
 * Author: Handian Yang
 * Email: ych0610765@gmail.com
-* Last update: Wed, Feb 28, 2024
+* Last update: Wed, May 1, 2024
 
 <!--
 ## Prerequisites
